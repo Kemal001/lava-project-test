@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float explosionForce;
+    [Header("Effects")]
+    public GameObject impactEffect;
+
+    [Header("Bullet Force")]
+    public float forceAmount;
     public float explosionRadius;
 
+    [Header("Collision Check")]
     public float collisionRadius;
-
     public LayerMask whatIsDamagable;
-
     private Collider[] colliders;
 
     private void Awake()
@@ -24,11 +27,16 @@ public class Bullet : MonoBehaviour
 
         foreach (Collider col in colliders)
         {
+            col.transform.parent.root.SendMessage("ActivateRagdoll");
+
+            Instantiate(impactEffect, transform.position, Quaternion.identity);
+
             Rigidbody[] rbs = col.GetComponentsInChildren<Rigidbody>();
 
             foreach (Rigidbody rb in rbs)
             {
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                //rb.AddExplosionForce(forceAmount, transform.position, explosionRadius);
+                rb.AddForce((rb.position - transform.position) * forceAmount, ForceMode.Impulse);
             }
 
             Destroy(gameObject);

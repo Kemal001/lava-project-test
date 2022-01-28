@@ -16,7 +16,7 @@ public class PlayerShooting : MonoBehaviour
     public float fireRate;
     private float lastShot = 0.0f;
 
-    public bool onShootingArea;
+    private bool onShootingArea;
 
     private void Awake() => agent = GetComponent<NavMeshAgent>();
 

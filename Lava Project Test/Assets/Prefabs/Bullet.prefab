@@ -219,9 +219,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e9980313b8c6342891e561cf4fc056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 500
+  impactEffect: {fileID: 1398693280568327808, guid: 8a999150f7521a34ea0ae7039386a148, type: 3}
+  forceAmount: 100
   explosionRadius: 100
-  collisionRadius: 0.1
+  collisionRadius: 0.2
   whatIsDamagable:
     serializedVersion: 2
     m_Bits: 512
